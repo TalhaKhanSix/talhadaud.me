@@ -1,6 +1,5 @@
 import "./App.css";
 import profileImg from "./astronaut.png";
-import { useState } from "react";
 
 function App() {
   return (
