@@ -1,6 +1,6 @@
 import "./App.css";
 import profileImg from "./astronaut.png";
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 
 function App() {
   return (
@@ -9,171 +9,50 @@ function App() {
       <main>
         <Hero />
         <About />
+        <Skills />
       </main>
     </div>
   );
 }
 
-// Step 1: Header/Navigation with mobile menu and scroll state
+// Step 1: Header/Navigation
 function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-
-  // Handle scroll for header styling and active section
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      
-      // Determine active section based on scroll position
-      const sections = ["home", "about", "skills", "projects", "contact"];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (isMenuOpen && !e.target.closest(".nav") && !e.target.closest(".menu-toggle")) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [isMenuOpen]);
-
-  const handleNavClick = useCallback((e, sectionId) => {
-    e.preventDefault();
-    setIsMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
-
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen((prev) => !prev);
-  }, []);
-
-  const navItems = ["home", "about", "skills", "projects", "contact"];
-
   return (
-    <header className={`header ${isScrolled ? "header-scrolled" : ""}`}>
+    <header className="header">
       <div className="container header-inner">
-        <a href="#home" className="logo" onClick={(e) => handleNavClick(e, "home")}>
+        <a href="#home" className="logo">
           Talha Daud
         </a>
-        <button 
-          className={`menu-toggle ${isMenuOpen ? "open" : ""}`}
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
-          {navItems.map((item) => (
-            <a
-              key={item}
-              href={`#${item}`}
-              className={`nav-link ${activeSection === item ? "active" : ""}`}
-              onClick={(e) => handleNavClick(e, item)}
-            >
-              {item.charAt(0).toUpperCase() + item.slice(1)}
-            </a>
-          ))}
+        <nav className="nav">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
         </nav>
       </div>
     </header>
   );
 }
 
-// Step 2: Hero Section with typing effect
+// Step 2: Hero Section
 function Hero() {
-  const [typedText, setTypedText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [roleIndex, setRoleIndex] = useState(0);
-  
-  const roles = ["Frontend Developer", "React Specialist", "UI/UX Enthusiast", "Web Developer"];
-
-  useEffect(() => {
-    const currentRole = roles[roleIndex];
-    const typingSpeed = isDeleting ? 50 : 100;
-    const pauseTime = isDeleting ? 500 : 2000;
-
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        // Typing
-        if (typedText.length < currentRole.length) {
-          setTypedText(currentRole.slice(0, typedText.length + 1));
-        } else {
-          // Finished typing, pause then delete
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        }
-      } else {
-        // Deleting
-        if (typedText.length > 0) {
-          setTypedText(typedText.slice(0, -1));
-        } else {
-          // Finished deleting, move to next role
-          setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % roles.length);
-        }
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timeout);
-  }, [typedText, isDeleting, roleIndex, roles]);
-
-  const handleButtonClick = useCallback((e, sectionId) => {
-    e.preventDefault();
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
-
   return (
     <section id="home" className="hero">
       <div className="container hero-content">
         <div className="hero-text">
           <p className="greeting">Hello, I am</p>
           <h1 className="name">Talha Daud</h1>
-          <h2 className="title">
-            <span className="typed-text">{typedText}</span>
-            <span className="cursor">|</span>
-          </h2>
+          <h2 className="title">Frontend Developer</h2>
           <p className="tagline">
             I build clean, responsive, and user-friendly web applications with
             React.
           </p>
           <div className="hero-buttons">
-            <a 
-              href="#projects" 
-              className="btn btn-primary"
-              onClick={(e) => handleButtonClick(e, "projects")}
-            >
+            <a href="#projects" className="btn btn-primary">
               View My Work
             </a>
-            <a 
-              href="#contact" 
-              className="btn btn-outline"
-              onClick={(e) => handleButtonClick(e, "contact")}
-            >
+            <a href="#contact" className="btn btn-outline">
               Contact Me
             </a>
           </div>
@@ -186,44 +65,13 @@ function Hero() {
   );
 }
 
-// Step 3: About Section with animation on scroll
+// Step 3: About Section
 function About() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      observer.observe(aboutSection);
-    }
-
-    return () => {
-      if (aboutSection) {
-        observer.unobserve(aboutSection);
-      }
-    };
-  }, []);
-
-  const infoItems = [
-    { label: "Name", value: "Talha Daud" },
-    { label: "Location", value: "Pakistan" },
-    { label: "Email", value: "talha@example.com" },
-    { label: "Availability", value: "Available for work", isAvailable: true },
-  ];
-
   return (
     <section id="about" className="about">
       <div className="container">
         <h2 className="section-title">About Me</h2>
-        <div className={`about-content ${isVisible ? "animate" : ""}`}>
+        <div className="about-content">
           <div className="about-image">
             <img src={profileImg} alt="Talha Daud" />
           </div>
@@ -241,16 +89,123 @@ function About() {
               development.
             </p>
             <div className="about-info">
-              {infoItems.map((item) => (
-                <div className="info-item" key={item.label}>
-                  <span className="info-label">{item.label}:</span>
-                  <span className={`info-value ${item.isAvailable ? "available" : ""}`}>
-                    {item.value}
-                  </span>
-                </div>
-              ))}
+              <div className="info-item">
+                <span className="info-label">Name:</span>
+                <span className="info-value">Talha Daud</span>
+              </div>
+              <div className="info-item">
+                <span className="info-label">Location:</span>
+                <span className="info-value">Pakistan</span>
+              </div>
+              <div className="info-item">
+                <span className="info-label">Email:</span>
+                <span className="info-value">talha@example.com</span>
+              </div>
+              <div className="info-item">
+                <span className="info-label">Availability:</span>
+                <span className="info-value available">Available for work</span>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Step 4: Skills Section with useState and events
+function Skills() {
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [hoveredSkill, setHoveredSkill] = useState(null);
+
+  const skillsData = [
+    { name: "HTML5", level: 95, category: "frontend", icon: "🌐" },
+    { name: "CSS3", level: 90, category: "frontend", icon: "🎨" },
+    { name: "JavaScript", level: 88, category: "frontend", icon: "⚡" },
+    { name: "React", level: 85, category: "frontend", icon: "⚛️" },
+    { name: "TypeScript", level: 75, category: "frontend", icon: "📘" },
+    { name: "Node.js", level: 70, category: "backend", icon: "🟢" },
+    { name: "Python", level: 65, category: "backend", icon: "🐍" },
+    { name: "Git", level: 80, category: "tools", icon: "📦" },
+    { name: "Figma", level: 70, category: "tools", icon: "🎯" },
+    { name: "VS Code", level: 90, category: "tools", icon: "💻" },
+  ];
+
+  const categories = [
+    { id: "all", label: "All Skills" },
+    { id: "frontend", label: "Frontend" },
+    { id: "backend", label: "Backend" },
+    { id: "tools", label: "Tools" },
+  ];
+
+  const filteredSkills =
+    activeCategory === "all"
+      ? skillsData
+      : skillsData.filter((skill) => skill.category === activeCategory);
+
+  const handleCategoryClick = (categoryId) => {
+    setActiveCategory(categoryId);
+  };
+
+  const handleSkillHover = (skillName) => {
+    setHoveredSkill(skillName);
+  };
+
+  const handleSkillLeave = () => {
+    setHoveredSkill(null);
+  };
+
+  return (
+    <section id="skills" className="skills">
+      <div className="container">
+        <h2 className="section-title">My Skills</h2>
+
+        <div className="skills-filter">
+          {categories.map((category) => (
+            <button
+              key={category.id}
+              className={`filter-btn ${
+                activeCategory === category.id ? "active" : ""
+              }`}
+              onClick={() => handleCategoryClick(category.id)}
+            >
+              {category.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="skills-grid">
+          {filteredSkills.map((skill) => (
+            <div
+              key={skill.name}
+              className={`skill-card ${
+                hoveredSkill === skill.name ? "hovered" : ""
+              }`}
+              onMouseEnter={() => handleSkillHover(skill.name)}
+              onMouseLeave={handleSkillLeave}
+            >
+              <div className="skill-icon">{skill.icon}</div>
+              <h3 className="skill-name">{skill.name}</h3>
+              <div className="skill-bar">
+                <div
+                  className="skill-progress"
+                  style={{
+                    width:
+                      hoveredSkill === skill.name ? `${skill.level}%` : "0%",
+                  }}
+                ></div>
+              </div>
+              <span className="skill-level">{skill.level}%</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="skills-summary">
+          <p>
+            Showing <span className="highlight">{filteredSkills.length}</span>{" "}
+            skills
+            {activeCategory !== "all" && ` in ${activeCategory}`}
+          </p>
         </div>
       </div>
     </section>
