@@ -1,5 +1,5 @@
 import "./App.css";
-import profileImg from "./astronaut.png";
+import profileImg from "./talha-profile.png";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -48,7 +48,11 @@ function Header() {
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (isMenuOpen && !e.target.closest(".nav") && !e.target.closest(".menu-toggle")) {
+      if (
+        isMenuOpen &&
+        !e.target.closest(".nav") &&
+        !e.target.closest(".menu-toggle")
+      ) {
         setIsMenuOpen(false);
       }
     };
@@ -93,9 +97,9 @@ function Header() {
   return (
     <header className={`header ${isScrolled ? "header-scrolled" : ""}`}>
       <div className="container header-inner">
-        <a 
-          href="#home" 
-          className="logo" 
+        <a
+          href="#home"
+          className="logo"
           onClick={(e) => handleNavClick(e, "home")}
         >
           <span className="logo-icon">TD</span>
@@ -118,7 +122,9 @@ function Header() {
             <a
               key={item.id}
               href={`#${item.id}`}
-              className={`nav-link ${activeSection === item.id ? "active" : ""}`}
+              className={`nav-link ${
+                activeSection === item.id ? "active" : ""
+              }`}
               onClick={(e) => handleNavClick(e, item.id)}
             >
               <span className="nav-icon">{item.icon}</span>
@@ -128,7 +134,12 @@ function Header() {
         </nav>
 
         {/* Overlay for mobile menu */}
-        {isMenuOpen && <div className="nav-overlay" onClick={() => setIsMenuOpen(false)}></div>}
+        {isMenuOpen && (
+          <div
+            className="nav-overlay"
+            onClick={() => setIsMenuOpen(false)}
+          ></div>
+        )}
       </div>
     </header>
   );
