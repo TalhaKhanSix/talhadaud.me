@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.6c1cbf03.css",
-    "main.js": "/static/js/main.9a73c92b.js",
+    "main.css": "/static/css/main.9435eb35.css",
+    "main.js": "/static/js/main.6fec3d77.js",
     "static/js/206.bc90039f.chunk.js": "/static/js/206.bc90039f.chunk.js",
     "static/media/astronaut.png": "/static/media/astronaut.478112669f2f17e02caf.png",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.6c1cbf03.css",
-    "static/js/main.9a73c92b.js"
+    "static/css/main.9435eb35.css",
+    "static/js/main.6fec3d77.js"
   ]
 }
