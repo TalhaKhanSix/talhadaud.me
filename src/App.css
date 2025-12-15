@@ -372,7 +372,14 @@ body {
   grid-template-columns: 1fr 1.5fr;
   gap: 60px;
   align-items: center;
-  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about-content.animate {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .about-image {

@@ -1,5 +1,6 @@
 import "./App.css";
 import profileImg from "./astronaut.png";
+import { useState, useEffect, useCallback } from "react";
 
 function App() {
   return (
@@ -13,44 +14,166 @@ function App() {
   );
 }
 
-// Step 1: Header/Navigation
+// Step 1: Header/Navigation with mobile menu and scroll state
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  // Handle scroll for header styling and active section
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+      
+      // Determine active section based on scroll position
+      const sections = ["home", "about", "skills", "projects", "contact"];
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isMenuOpen && !e.target.closest(".nav") && !e.target.closest(".menu-toggle")) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [isMenuOpen]);
+
+  const handleNavClick = useCallback((e, sectionId) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen((prev) => !prev);
+  }, []);
+
+  const navItems = ["home", "about", "skills", "projects", "contact"];
+
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? "header-scrolled" : ""}`}>
       <div className="container header-inner">
-        <a href="#home" className="logo">
+        <a href="#home" className="logo" onClick={(e) => handleNavClick(e, "home")}>
           Talha Daud
         </a>
-        <nav className="nav">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+        <button 
+          className={`menu-toggle ${isMenuOpen ? "open" : ""}`}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav className={`nav ${isMenuOpen ? "nav-open" : ""}`}>
+          {navItems.map((item) => (
+            <a
+              key={item}
+              href={`#${item}`}
+              className={`nav-link ${activeSection === item ? "active" : ""}`}
+              onClick={(e) => handleNavClick(e, item)}
+            >
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </a>
+          ))}
         </nav>
       </div>
     </header>
   );
 }
 
-// Step 2: Hero Section
+// Step 2: Hero Section with typing effect
 function Hero() {
+  const [typedText, setTypedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
+  
+  const roles = ["Frontend Developer", "React Specialist", "UI/UX Enthusiast", "Web Developer"];
+
+  useEffect(() => {
+    const currentRole = roles[roleIndex];
+    const typingSpeed = isDeleting ? 50 : 100;
+    const pauseTime = isDeleting ? 500 : 2000;
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (typedText.length < currentRole.length) {
+          setTypedText(currentRole.slice(0, typedText.length + 1));
+        } else {
+          // Finished typing, pause then delete
+          setTimeout(() => setIsDeleting(true), pauseTime);
+        }
+      } else {
+        // Deleting
+        if (typedText.length > 0) {
+          setTypedText(typedText.slice(0, -1));
+        } else {
+          // Finished deleting, move to next role
+          setIsDeleting(false);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [typedText, isDeleting, roleIndex, roles]);
+
+  const handleButtonClick = useCallback((e, sectionId) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <section id="home" className="hero">
       <div className="container hero-content">
         <div className="hero-text">
           <p className="greeting">Hello, I am</p>
           <h1 className="name">Talha Daud</h1>
-          <h2 className="title">Frontend Developer</h2>
+          <h2 className="title">
+            <span className="typed-text">{typedText}</span>
+            <span className="cursor">|</span>
+          </h2>
           <p className="tagline">
             I build clean, responsive, and user-friendly web applications with
             React.
           </p>
           <div className="hero-buttons">
-            <a href="#projects" className="btn btn-primary">
+            <a 
+              href="#projects" 
+              className="btn btn-primary"
+              onClick={(e) => handleButtonClick(e, "projects")}
+            >
               View My Work
             </a>
-            <a href="#contact" className="btn btn-outline">
+            <a 
+              href="#contact" 
+              className="btn btn-outline"
+              onClick={(e) => handleButtonClick(e, "contact")}
+            >
               Contact Me
             </a>
           </div>
@@ -63,13 +186,44 @@ function Hero() {
   );
 }
 
-// Step 3: About Section
+// Step 3: About Section with animation on scroll
 function About() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
+
+    return () => {
+      if (aboutSection) {
+        observer.unobserve(aboutSection);
+      }
+    };
+  }, []);
+
+  const infoItems = [
+    { label: "Name", value: "Talha Daud" },
+    { label: "Location", value: "Pakistan" },
+    { label: "Email", value: "talha@example.com" },
+    { label: "Availability", value: "Available for work", isAvailable: true },
+  ];
+
   return (
     <section id="about" className="about">
       <div className="container">
         <h2 className="section-title">About Me</h2>
-        <div className="about-content">
+        <div className={`about-content ${isVisible ? "animate" : ""}`}>
           <div className="about-image">
             <img src={profileImg} alt="Talha Daud" />
           </div>
@@ -87,22 +241,14 @@ function About() {
               development.
             </p>
             <div className="about-info">
-              <div className="info-item">
-                <span className="info-label">Name:</span>
-                <span className="info-value">Talha Daud</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Location:</span>
-                <span className="info-value">Pakistan</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Email:</span>
-                <span className="info-value">talha@example.com</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Availability:</span>
-                <span className="info-value available">Available for work</span>
-              </div>
+              {infoItems.map((item) => (
+                <div className="info-item" key={item.label}>
+                  <span className="info-label">{item.label}:</span>
+                  <span className={`info-value ${item.isAvailable ? "available" : ""}`}>
+                    {item.value}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
