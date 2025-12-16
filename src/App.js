@@ -11,7 +11,9 @@ function App() {
         <About />
         <Skills />
         <Projects />
+        <Contact />
       </main>
+      <Footer />
     </div>
   );
 }
@@ -710,8 +712,10 @@ function Projects() {
       title: "E-Commerce Website",
       category: "web",
       image: "🛒",
-      description: "A full-featured e-commerce platform with cart, checkout, and payment integration.",
-      longDescription: "Built a complete e-commerce solution with React, featuring product catalog, shopping cart, user authentication, and Stripe payment integration. Implemented responsive design and optimized performance.",
+      description:
+        "A full-featured e-commerce platform with cart, checkout, and payment integration.",
+      longDescription:
+        "Built a complete e-commerce solution with React, featuring product catalog, shopping cart, user authentication, and Stripe payment integration. Implemented responsive design and optimized performance.",
       technologies: ["React", "Node.js", "MongoDB", "Stripe"],
       liveUrl: "https://example.com",
       githubUrl: "https://github.com/TalhaKhanSix",
@@ -722,8 +726,10 @@ function Projects() {
       title: "Portfolio Website",
       category: "web",
       image: "🎨",
-      description: "Modern portfolio website with smooth animations and responsive design.",
-      longDescription: "Designed and developed a personal portfolio showcasing projects and skills. Features include smooth scroll animations, dark theme, and mobile-first responsive design.",
+      description:
+        "Modern portfolio website with smooth animations and responsive design.",
+      longDescription:
+        "Designed and developed a personal portfolio showcasing projects and skills. Features include smooth scroll animations, dark theme, and mobile-first responsive design.",
       technologies: ["React", "CSS3", "JavaScript"],
       liveUrl: "https://talhadaud.me",
       githubUrl: "https://github.com/TalhaKhanSix/talhadaud.me",
@@ -734,8 +740,10 @@ function Projects() {
       title: "Task Management App",
       category: "app",
       image: "📋",
-      description: "A productivity app for managing tasks with drag-and-drop functionality.",
-      longDescription: "Developed a task management application with features like drag-and-drop reordering, categories, due dates, and progress tracking. Uses local storage for data persistence.",
+      description:
+        "A productivity app for managing tasks with drag-and-drop functionality.",
+      longDescription:
+        "Developed a task management application with features like drag-and-drop reordering, categories, due dates, and progress tracking. Uses local storage for data persistence.",
       technologies: ["React", "DnD Kit", "LocalStorage"],
       liveUrl: "https://example.com",
       githubUrl: "https://github.com/TalhaKhanSix",
@@ -746,8 +754,10 @@ function Projects() {
       title: "Weather Dashboard",
       category: "app",
       image: "🌤️",
-      description: "Real-time weather app with location-based forecasts and beautiful UI.",
-      longDescription: "Created a weather dashboard that fetches real-time data from OpenWeather API. Features include location search, 7-day forecast, and dynamic backgrounds based on weather conditions.",
+      description:
+        "Real-time weather app with location-based forecasts and beautiful UI.",
+      longDescription:
+        "Created a weather dashboard that fetches real-time data from OpenWeather API. Features include location search, 7-day forecast, and dynamic backgrounds based on weather conditions.",
       technologies: ["React", "API", "CSS3"],
       liveUrl: "https://example.com",
       githubUrl: "https://github.com/TalhaKhanSix",
@@ -759,7 +769,8 @@ function Projects() {
       category: "design",
       image: "🖼️",
       description: "Creative landing page with modern UI/UX design principles.",
-      longDescription: "Designed a stunning landing page with attention to typography, color theory, and user experience. Optimized for conversions with clear call-to-action elements.",
+      longDescription:
+        "Designed a stunning landing page with attention to typography, color theory, and user experience. Optimized for conversions with clear call-to-action elements.",
       technologies: ["Figma", "HTML", "CSS"],
       liveUrl: "https://example.com",
       githubUrl: "https://github.com/TalhaKhanSix",
@@ -771,7 +782,8 @@ function Projects() {
       category: "app",
       image: "💬",
       description: "Real-time chat app with rooms and private messaging.",
-      longDescription: "Built a real-time chat application using WebSocket technology. Features include chat rooms, private messaging, typing indicators, and message history.",
+      longDescription:
+        "Built a real-time chat application using WebSocket technology. Features include chat rooms, private messaging, typing indicators, and message history.",
       technologies: ["React", "Socket.io", "Node.js"],
       liveUrl: "https://example.com",
       githubUrl: "https://github.com/TalhaKhanSix",
@@ -820,7 +832,9 @@ function Projects() {
           {filters.map((filter) => (
             <button
               key={filter.id}
-              className={`filter-btn ${activeFilter === filter.id ? "active" : ""}`}
+              className={`filter-btn ${
+                activeFilter === filter.id ? "active" : ""
+              }`}
               onClick={() => handleFilterClick(filter.id)}
             >
               <span className="filter-icon">{filter.icon}</span>
@@ -833,13 +847,17 @@ function Projects() {
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`project-card ${hoveredProject === project.id ? "hovered" : ""} ${project.featured ? "featured" : ""}`}
+              className={`project-card ${
+                hoveredProject === project.id ? "hovered" : ""
+              } ${project.featured ? "featured" : ""}`}
               style={{ animationDelay: `${index * 0.1}s` }}
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
               onClick={() => openModal(project)}
             >
-              {project.featured && <span className="featured-badge">⭐ Featured</span>}
+              {project.featured && (
+                <span className="featured-badge">⭐ Featured</span>
+              )}
               <div className="project-image">
                 <span className="project-emoji">{project.image}</span>
               </div>
@@ -848,7 +866,9 @@ function Projects() {
                 <p className="project-description">{project.description}</p>
                 <div className="project-tech">
                   {project.technologies.slice(0, 3).map((tech) => (
-                    <span key={tech} className="tech-tag">{tech}</span>
+                    <span key={tech} className="tech-tag">
+                      {tech}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -861,8 +881,8 @@ function Projects() {
 
         <div className="projects-summary">
           <p>
-            Showing <span className="highlight">{filteredProjects.length}</span> of{" "}
-            <span className="highlight">{projectsData.length}</span> projects
+            Showing <span className="highlight">{filteredProjects.length}</span>{" "}
+            of <span className="highlight">{projectsData.length}</span> projects
           </p>
         </div>
 
@@ -877,7 +897,9 @@ function Projects() {
                 <span className="modal-emoji">{selectedProject.image}</span>
                 <div>
                   <h3>{selectedProject.title}</h3>
-                  <span className="modal-category">{selectedProject.category}</span>
+                  <span className="modal-category">
+                    {selectedProject.category}
+                  </span>
                 </div>
               </div>
               <div className="modal-body">
@@ -886,7 +908,9 @@ function Projects() {
                   <h4>Technologies Used:</h4>
                   <div className="tech-list">
                     {selectedProject.technologies.map((tech) => (
-                      <span key={tech} className="tech-tag">{tech}</span>
+                      <span key={tech} className="tech-tag">
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -916,6 +940,358 @@ function Projects() {
         )}
       </div>
     </section>
+  );
+}
+
+// Step 6: Contact Section with form validation and interactivity
+function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [focusedField, setFocusedField] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Intersection Observer for scroll animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      observer.observe(contactSection);
+    }
+
+    return () => {
+      if (contactSection) {
+        observer.unobserve(contactSection);
+      }
+    };
+  }, []);
+
+  // Clear submit status after 5 seconds
+  useEffect(() => {
+    if (submitStatus) {
+      const timer = setTimeout(() => {
+        setSubmitStatus(null);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
+
+  const validateField = (name, value) => {
+    switch (name) {
+      case "name":
+        if (!value.trim()) return "Name is required";
+        if (value.length < 2) return "Name must be at least 2 characters";
+        return "";
+      case "email":
+        if (!value.trim()) return "Email is required";
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) return "Please enter a valid email";
+        return "";
+      case "subject":
+        if (!value.trim()) return "Subject is required";
+        if (value.length < 5) return "Subject must be at least 5 characters";
+        return "";
+      case "message":
+        if (!value.trim()) return "Message is required";
+        if (value.length < 20) return "Message must be at least 20 characters";
+        return "";
+      default:
+        return "";
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const error = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error }));
+    setFocusedField(null);
+  };
+
+  const handleFocus = (e) => {
+    setFocusedField(e.target.name);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate all fields
+    const newErrors = {};
+    Object.keys(formData).forEach((key) => {
+      const error = validateField(key, formData[key]);
+      if (error) newErrors[key] = error;
+    });
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const contactInfo = [
+    {
+      icon: "📧",
+      label: "Email",
+      value: "talhadaud@example.com",
+      link: "mailto:talhadaud@example.com",
+    },
+    {
+      icon: "📍",
+      label: "Location",
+      value: "Pakistan",
+      link: null,
+    },
+    {
+      icon: "📱",
+      label: "Phone",
+      value: "+92 XXX XXXXXXX",
+      link: "tel:+92XXXXXXXXXX",
+    },
+  ];
+
+  const socialLinks = [
+    { name: "GitHub", icon: "📦", url: "https://github.com/TalhaKhanSix" },
+    { name: "LinkedIn", icon: "💼", url: "https://linkedin.com" },
+    { name: "Twitter", icon: "🐦", url: "https://twitter.com" },
+    { name: "Instagram", icon: "📸", url: "https://instagram.com" },
+  ];
+
+  return (
+    <section id="contact" className="contact">
+      <div className="container">
+        <h2 className="section-title">Get In Touch</h2>
+
+        <div className={`contact-content ${isVisible ? "animate" : ""}`}>
+          <div className="contact-info">
+            <h3>Let's work together!</h3>
+            <p>
+              Have a project in mind or want to collaborate? Feel free to reach
+              out. I'm always open to discussing new opportunities.
+            </p>
+
+            <div className="contact-details">
+              {contactInfo.map((info) => (
+                <div className="contact-item" key={info.label}>
+                  <span className="contact-icon">{info.icon}</span>
+                  <div>
+                    <span className="contact-label">{info.label}</span>
+                    {info.link ? (
+                      <a href={info.link} className="contact-value">
+                        {info.value}
+                      </a>
+                    ) : (
+                      <span className="contact-value">{info.value}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="contact-socials">
+              <h4>Follow Me</h4>
+              <div className="social-links">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-btn"
+                    title={social.name}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <form className="contact-form" onSubmit={handleSubmit} noValidate>
+            <div className="form-row">
+              <div className={`form-group ${focusedField === "name" ? "focused" : ""} ${errors.name ? "error" : ""}`}>
+                <label htmlFor="name">
+                  <span className="label-icon">👤</span>
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  onFocus={handleFocus}
+                  placeholder="John Doe"
+                  disabled={isSubmitting}
+                />
+                {errors.name && <span className="error-message">{errors.name}</span>}
+              </div>
+
+              <div className={`form-group ${focusedField === "email" ? "focused" : ""} ${errors.email ? "error" : ""}`}>
+                <label htmlFor="email">
+                  <span className="label-icon">📧</span>
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  onFocus={handleFocus}
+                  placeholder="john@example.com"
+                  disabled={isSubmitting}
+                />
+                {errors.email && <span className="error-message">{errors.email}</span>}
+              </div>
+            </div>
+
+            <div className={`form-group ${focusedField === "subject" ? "focused" : ""} ${errors.subject ? "error" : ""}`}>
+              <label htmlFor="subject">
+                <span className="label-icon">📝</span>
+                Subject
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+                placeholder="Project Inquiry"
+                disabled={isSubmitting}
+              />
+              {errors.subject && <span className="error-message">{errors.subject}</span>}
+            </div>
+
+            <div className={`form-group ${focusedField === "message" ? "focused" : ""} ${errors.message ? "error" : ""}`}>
+              <label htmlFor="message">
+                <span className="label-icon">💬</span>
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+                placeholder="Tell me about your project..."
+                rows="5"
+                disabled={isSubmitting}
+              ></textarea>
+              {errors.message && <span className="error-message">{errors.message}</span>}
+              <span className="char-count">
+                {formData.message.length} / 500 characters
+              </span>
+            </div>
+
+            <button
+              type="submit"
+              className={`btn btn-primary submit-btn ${isSubmitting ? "submitting" : ""}`}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <span className="spinner"></span>
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <span className="btn-icon">🚀</span>
+                  Send Message
+                </>
+              )}
+            </button>
+
+            {submitStatus === "success" && (
+              <div className="submit-message success">
+                <span>✅</span> Message sent successfully! I'll get back to you soon.
+              </div>
+            )}
+
+            {submitStatus === "error" && (
+              <div className="submit-message error">
+                <span>❌</span> Something went wrong. Please try again.
+              </div>
+            )}
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Step 7: Footer
+function Footer() {
+  const [currentYear] = useState(new Date().getFullYear());
+
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-content">
+          <div className="footer-brand">
+            <span className="footer-logo">TD</span>
+            <p>Building beautiful web experiences with React.</p>
+          </div>
+          <div className="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© {currentYear} Talha Daud. All rights reserved.</p>
+          <button className="scroll-top-btn" onClick={handleScrollToTop}>
+            ↑ Back to Top
+          </button>
+        </div>
+      </div>
+    </footer>
   );
 }
 
