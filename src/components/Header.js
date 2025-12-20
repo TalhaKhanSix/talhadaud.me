@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import astronaut from "../astronaut.png";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -86,7 +87,12 @@ function Header() {
           className="logo"
           onClick={(e) => handleNavClick(e, "home")}
         >
-          <span className="logo-icon">TD</span>
+          <img
+            src={astronaut}
+            alt="Logo"
+            className="logo-icon"
+            style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+          />
           <span className="logo-text">Talha Daud</span>
         </a>
 
