@@ -1,14 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.6a3c8bda.css",
-    "main.js": "/static/js/main.0b43f01a.js",
+    "main.css": "/static/css/main.083cf7d3.css",
+    "main.js": "/static/js/main.bfbe02be.js",
     "static/js/206.bc90039f.chunk.js": "/static/js/206.bc90039f.chunk.js",
-    "static/media/talha-profile.png": "/static/media/talha-profile.a136b01c786eec19ed79.png",
-    "static/media/astronaut.png": "/static/media/astronaut.478112669f2f17e02caf.png",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/css/main.6a3c8bda.css",
-    "static/js/main.0b43f01a.js"
+    "static/css/main.083cf7d3.css",
+    "static/js/main.bfbe02be.js"
   ]
 }
