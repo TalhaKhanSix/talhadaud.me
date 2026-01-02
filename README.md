@@ -1,70 +1,171 @@
-# Getting Started with Create React App
+# Talha Daud Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, minimalist portfolio website inspired by the Sawad design aesthetic. Built with Next.js 14+, Tailwind CSS, and Framer Motion.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🎨 Design System
 
-### `npm start`
+### Color Palette (Sawad Theme)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Color         | Hex       | Usage              |
+| ------------- | --------- | ------------------ |
+| Deep Black    | `#000000` | Primary background |
+| Dark Gray     | `#111111` | Card backgrounds   |
+| Subtle Border | `#222222` | Borders & dividers |
+| White         | `#FFFFFF` | Primary text       |
+| Muted         | `#888888` | Secondary text     |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Typography
 
-### `npm test`
+- **Font Family**: Inter (Sans-serif)
+- **Headings**: Bold, high-contrast white
+- **Body**: Regular weight, muted gray
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📋 Development Phases
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Phase 1: Foundation & Layout
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [ ] Initialize project with **Next.js 14+ (App Router)**, **Tailwind CSS**, and **Framer Motion**
+- [ ] Configure `tailwind.config.js` with the Sawad color palette:
+  - Deep Blacks (`#000000`)
+  - Dark Grays (`#111111`)
+  - Subtle borders (`#222222`)
+- [ ] Setup typography using **Inter** or similar high-quality Sans-serif font
+- [ ] Create a `Navbar` component:
+  - Floating/Sticky glassmorphism effect
+  - Links: Home, Projects, Experience, Tools, Thoughts
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Phase 2: Hero & Bento Grid
 
-### `npm run eject`
+- [ ] **Hero Section**:
+  - "Software Engineer" title with high-contrast white text
+  - Sub-description for UX passion
+- [ ] **Bento Stats**:
+  - 3-column grid for metrics
+  - Years of Experience, Projects, Clients
+  - Large typography
+- [ ] **Marquee**:
+  - Build `ScrollingText` component using Framer Motion
+  - "Dynamic Animation / Motion Design" infinite loop
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Phase 3: Project & Experience Sections
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [ ] **Project Grid**:
+  - Vertical list of project cards
+  - Large image container with "View Project" overlay
+  - Minimalist metadata
+- [ ] **Experience List**:
+  - Vertical timeline layout
+  - Company Logo (circular)
+  - Role Title, Description, Date Range
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Phase 4: Tools & Content
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [ ] **Tools Grid**:
+  - 2x3 or 3x3 grid of tech stack icons
+  - Next.js, Figma, etc.
+  - Rounded-xl borders
+  - Subtle hover lift effect
+- [ ] **Blog/Thoughts**:
+  - List layout for articles
+  - Date, title, brief snippet
 
-## Learn More
+### Phase 5: Interaction & Contact
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [ ] **Contact Form** ("Let's Work Together"):
+  - Name field
+  - Email field
+  - Budget (Select dropdown)
+  - Message field
+- [ ] **Global Animations** (Framer Motion):
+  ```jsx
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  ```
+  - Apply to every major section for "smooth reveal" effect
+- [ ] **Custom Cursor** (Optional):
+  - Subtle custom circle cursor
+  - Reacts to hover states on links and projects
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🗂️ Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+src/
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+├── components/
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── BentoStats.tsx
+│   ├── ScrollingText.tsx
+│   ├── ProjectGrid.tsx
+│   ├── ExperienceList.tsx
+│   ├── ToolsGrid.tsx
+│   ├── BlogList.tsx
+│   ├── ContactForm.tsx
+│   └── CustomCursor.tsx
+├── lib/
+│   └── utils.ts
+└── data/
+    ├── projects.ts
+    ├── experience.ts
+    └── tools.ts
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🛠️ Tech Stack
 
-### Making a Progressive Web App
+| Technology    | Purpose                   |
+| ------------- | ------------------------- |
+| Next.js 14+   | App Router, SSR, Routing  |
+| Tailwind CSS  | Utility-first styling     |
+| Framer Motion | Animations & interactions |
+| TypeScript    | Type safety               |
+| Inter Font    | Typography                |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 🚀 Getting Started
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+# Install dependencies
+npm install
 
-### Deployment
+# Run development server
+npm run dev
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Build for production
+npm run build
 
-### `npm run build` fails to minify
+# Start production server
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📝 Notes
+
+- All sections should have smooth scroll-reveal animations
+- Maintain consistent spacing (use Tailwind's spacing scale)
+- Mobile-first responsive design
+- Dark theme only (no light mode toggle needed)
+- Performance optimized with Next.js Image component
+
+---
+
+## 🔗 Links
+
+- **Live Site**: [talhadaud.me](https://talhadaud.me)
+- **GitHub**: [TalhaKhanSix/talhadaud.me](https://github.com/TalhaKhanSix/talhadaud.me)
+
+---
+
+_Built with ❤️ by Talha Daud_
