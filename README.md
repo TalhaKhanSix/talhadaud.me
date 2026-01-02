@@ -135,6 +135,8 @@ src/
 
 ## 🚀 Getting Started
 
+### Local Development
+
 ```bash
 # Install dependencies
 npm install
@@ -142,12 +144,32 @@ npm install
 # Run development server
 npm run dev
 
-# Build for production
+# Open http://localhost:3000 in your browser
+```
+
+### Production Build
+
+```bash
+# Build for production (generates static site in ./out directory)
 npm run build
 
-# Start production server
-npm start
+# Preview the production build locally
+cd out && python3 -m http.server 8080
+# Or use any static file server
 ```
+
+### Deployment
+
+The site is configured for automatic deployment to GitHub Pages:
+
+1. **Automatic Deployment**: Push to `main` or `master` branch triggers deployment
+2. **Manual Deployment**: Go to Actions tab and run "Deploy to GitHub Pages" workflow
+3. **Output**: Site is deployed to `gh-pages` branch and served at talhadaud.me
+
+The GitHub Actions workflow:
+- Installs dependencies
+- Builds the static site (`npm run build`)
+- Deploys the `./out` directory to GitHub Pages
 
 ---
 
