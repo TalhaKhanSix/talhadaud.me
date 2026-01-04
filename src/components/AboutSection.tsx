@@ -17,18 +17,32 @@ export default function AboutSection() {
           About Me
         </motion.p>
 
-        {/* Main Heading */}
-        <motion.h1
+        {/* Large Title */}
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-sawad-white leading-tight mb-8"
+          className="mb-10"
         >
-          I craft digital experiences that blend{" "}
-          <span className="text-orange-500">aesthetics</span> with{" "}
-          <span className="text-orange-500">functionality</span>.
-        </motion.h1>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none">
+            <span className="text-sawad-white block">SOFTWARE</span>
+            <span className="text-sawad-muted/60 block">ENGINEER</span>
+          </h1>
+        </motion.div>
+
+        {/* Main Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="text-2xl md:text-3xl lg:text-4xl font-bold text-sawad-white leading-tight mb-8"
+        >
+          BSCS student in University of   {" "}
+          <span className="text-orange-500">Engineering</span> and{" "}
+          <span className="text-orange-500">Technology</span>.
+        </motion.h2>
 
         {/* Description */}
         <motion.div
@@ -39,9 +53,12 @@ export default function AboutSection() {
           className="space-y-4 text-sawad-muted text-lg leading-relaxed"
         >
           <p>
-            As the internet continues to develop and grow exponentially, jobs related 
-            to the industry do too, particularly those that relate to web design and 
-            development.
+            I started BSCS in 2024 at the University of Engineering and Technology with a passion to learn and serve
+             in the field of software development. My first year in the university has been a journey of growth and discovery.
+          </p>
+          <p>
+            Throughout my studies, I have gained a solid foundation in programming languages, algorithms, and data structures. 
+            I have also had the opportunity to work on various projects that have allowed me to apply my knowledge in real-world scenarios.
           </p>
           <p>
             Whether you work in marketing, sales, or product design, you understand 

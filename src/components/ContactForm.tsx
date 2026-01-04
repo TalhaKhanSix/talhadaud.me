@@ -195,14 +195,13 @@ export default function ContactForm() {
                   htmlFor="budget"
                   className="block text-sm font-medium text-sawad-muted uppercase tracking-widest mb-3"
                 >
-                  Budget
+                  Budget <span className="text-sawad-border lowercase">(optional)</span>
                 </label>
                 <select
                   id="budget"
                   name="budget"
                   value={formData.budget}
                   onChange={handleChange}
-                  required
                   className="w-full px-0 py-4 bg-transparent border-0 border-b border-sawad-border text-sawad-white focus:outline-none focus:border-sawad-muted transition-colors duration-300 cursor-pointer appearance-none"
                   style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888888'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
@@ -313,8 +312,7 @@ export default function ContactForm() {
           className="mt-24 pt-12 border-t border-sawad-border text-center"
         >
           <p className="text-sawad-muted text-sm">
-            © {new Date().getFullYear()} Talha Daud. Built with ❤️ using Next.js
-            & Tailwind CSS
+            © {new Date().getFullYear()} Talha Daud. Built with ❤️ 
           </p>
         </motion.div>
       </div>

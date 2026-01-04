@@ -148,7 +148,8 @@ export default function ProfileSidebar() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-sawad-muted text-sm leading-relaxed mb-6 px-4"
           >
-            A Software Engineer who has developed countless innovative solutions.
+            A Software Engineer who has developed countless innovative solutions
+             and still learning more every day because technology never stands still.
           </motion.p>
 
           {/* Social Links */}

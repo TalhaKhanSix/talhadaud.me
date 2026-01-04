@@ -4,7 +4,6 @@ import ScrollingText from "@/components/ScrollingText";
 import ProjectGrid from "@/components/ProjectGrid";
 import ExperienceList from "@/components/ExperienceList";
 import ToolsGrid from "@/components/ToolsGrid";
-import BlogList from "@/components/BlogList";
 import ContactForm from "@/components/ContactForm";
 import AboutSection from "@/components/AboutSection";
 
@@ -26,7 +25,6 @@ export default function Home() {
           <ProjectGrid />
           <ExperienceList />
           <ToolsGrid />
-          <BlogList />
           <ContactForm />
         </div>
       </div>
