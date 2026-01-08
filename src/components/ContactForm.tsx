@@ -9,6 +9,9 @@ interface FormData {
   message: string;
 }
 
+const FORMEASE_API_KEY = "0a0cbb73-7182-4f70-a906-a4eb4c6f218b";
+const FORMEASE_ENDPOINT = "https://formease-api-501d8c73bf2f.herokuapp.com/api/submit";
+
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -17,6 +20,7 @@ export default function ContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -28,18 +32,40 @@ export default function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch(FORMEASE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: FORMEASE_API_KEY,
+          subject: `🚀 New Contact from ${formData.name} - talhadaud.me`,
+          ...formData,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      const result = await response.json();
 
-    // Reset form after showing success
-    setTimeout(() => {
-      setFormData({ name: "", email: "", message: "" });
-      setIsSubmitted(false);
-    }, 3000);
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+        
+        // Reset success state after showing message
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error(result.error || "Failed to send message");
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -138,6 +164,26 @@ export default function ContactForm() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Honeypot field for spam protection - hidden from users */}
+              <input
+                type="text"
+                name="_gotcha"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
+              {/* Error Message */}
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm"
+                >
+                  {error}
+                </motion.div>
+              )}
+
               {/* Name Field */}
               <div>
                 <label
