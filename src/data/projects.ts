@@ -25,7 +25,7 @@ export const projects: Project[] = [
     title: "ChronoPulse",
     description:
       "An interactive data visualization dashboard that presents real-time analytics and insights through dynamic charts and graphs.",
-    image: "/logo.png",
+    image: "/Logo.png",
     tags: ["React", "D3.js", "Node.js", "PostgreSQL"],
     link: "https://chronopulse.social/",
     year: "2025",
@@ -37,6 +37,7 @@ export const projects: Project[] = [
       "A mobile app for managing gym memberships, tracking workouts, and connecting with trainers through real-time chat features.",
     image: "/projects/dashboard.svg",
     tags: ["c#", "Oracle SQL", "Visual Studio", "Entity Framework"],
+    link: "/projects/gym",
     year: "2024",
   },
  

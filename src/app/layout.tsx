@@ -7,10 +7,12 @@ export const metadata: Metadata = {
   description: "Software Engineer passionate about creating exceptional user experiences with modern web technologies.",
   keywords: ["Software Engineer", "Web Developer", "React", "Next.js", "TypeScript"],
   authors: [{ name: "Talha Daud" }],
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
   icons: {
     icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
   },
   openGraph: {
     title: "Talha Daud |",

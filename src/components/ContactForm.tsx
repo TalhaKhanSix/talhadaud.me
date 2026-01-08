@@ -6,24 +6,13 @@ import { motion } from "framer-motion";
 interface FormData {
   name: string;
   email: string;
-  budget: string;
   message: string;
 }
-
-const budgetOptions = [
-  { value: "", label: "Select your budget" },
-  { value: "under-5k", label: "Under $5,000" },
-  { value: "5k-10k", label: "$5,000 - $10,000" },
-  { value: "10k-25k", label: "$10,000 - $25,000" },
-  { value: "25k-50k", label: "$25,000 - $50,000" },
-  { value: "50k-plus", label: "$50,000+" },
-];
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    budget: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -48,7 +37,7 @@ export default function ContactForm() {
 
     // Reset form after showing success
     setTimeout(() => {
-      setFormData({ name: "", email: "", budget: "", message: "" });
+      setFormData({ name: "", email: "", message: "" });
       setIsSubmitted(false);
     }, 3000);
   };
@@ -187,39 +176,6 @@ export default function ContactForm() {
                   placeholder="your@email.com"
                   className="w-full px-0 py-4 bg-transparent border-0 border-b border-sawad-border text-sawad-white placeholder-sawad-border focus:outline-none focus:border-sawad-muted transition-colors duration-300"
                 />
-              </div>
-
-              {/* Budget Select */}
-              <div>
-                <label
-                  htmlFor="budget"
-                  className="block text-sm font-medium text-sawad-muted uppercase tracking-widest mb-3"
-                >
-                  Budget <span className="text-sawad-border lowercase">(optional)</span>
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  value={formData.budget}
-                  onChange={handleChange}
-                  className="w-full px-0 py-4 bg-transparent border-0 border-b border-sawad-border text-sawad-white focus:outline-none focus:border-sawad-muted transition-colors duration-300 cursor-pointer appearance-none"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23888888'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "right 0 center",
-                    backgroundSize: "1.5rem",
-                  }}
-                >
-                  {budgetOptions.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                      className="bg-sawad-dark text-sawad-white"
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
               </div>
 
               {/* Message Field */}
