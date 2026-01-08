@@ -81,13 +81,10 @@ export default function AboutSection() {
             <span className="text-sm text-sawad-muted">Years Experience</span>
           </div>
           <div>
-            <span className="block text-4xl font-bold text-sawad-white">20+</span>
+            <span className="block text-4xl font-bold text-sawad-white">5+</span>
             <span className="text-sm text-sawad-muted">Projects Completed</span>
           </div>
-          <div>
-            <span className="block text-4xl font-bold text-sawad-white">15+</span>
-            <span className="text-sm text-sawad-muted">Happy Clients</span>
-          </div>
+          
         </motion.div>
 
         {/* CTA Buttons */}

@@ -13,27 +13,29 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
      id: "1",
-    company: "Personal Projects & Learning",
-    logo: "/companies/self.svg",
-    role: "Frontend / Full-Stack Developer",
+     company: "Academic & Practice Projects",
+    logo: "/companies/education.svg",
+    role: "Frontend Modern Technologies ",
     description:
       "Built multiple web applications using React, TypeScript, and modern frontend tools. Focused on clean UI, responsive design, and reusable components. Implemented authentication, dashboards, and REST API integrations.",
     startDate: "Sep 2025",
     endDate: "Present",
-    location: "Remote",
+    location: "Pakistan",
     technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
   },
   {
     id: "2",
-    company: "Academic & Practice Projects",
-    logo: "/companies/education.svg",
-    role: "Full Stack Developer (Projects)",
+    company: "Personal Projects & Learning",
+    logo: "/companies/self.svg",
+    role: " Full-Stack Developer",
     description:
-      "Developed full-stack applications as part of coursework and self-practice. Created REST APIs, handled databases, and connected backend services with frontend applications. Followed clean code and basic system design principles.",
+    "Developed full-stack applications as part of coursework and self-practice. Created REST APIs, handled databases, and connected backend services with frontend applications. Followed clean code and basic system design principles.",
+      
     startDate: "Sep 2024",
     endDate: "August 2025",
-    location: "Pakistan",
-    technologies: ["Node.js", "Express", "MongoDB", "MySQL"],
+    location: "Remote",
+    technologies: ["Node.js", "Express", "MongoDB", "Oracle SQL" ],
+   
   },
   {
     id: "3",

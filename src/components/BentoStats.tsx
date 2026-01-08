@@ -9,14 +9,9 @@ const stats = [
     description: "Building digital products",
   },
   {
-    value: "20+",
+    value: "5+",
     label: "Projects Completed",
     description: "From concept to deployment",
-  },
-  {
-    value: "15+",
-    label: "Happy Clients",
-    description: "Worldwide collaboration",
   },
 ];
 

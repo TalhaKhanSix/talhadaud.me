@@ -12,38 +12,32 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "E-Commerce Platform",
+    title: "My Portfolio",
     description:
-      "A modern e-commerce solution with seamless checkout experience, real-time inventory management, and responsive design.",
-    image: "/projects/ecommerce.svg",
+      "A personal portfolio website showcasing my projects, skills, and experience with a modern and responsive design.",
+    image: "/favicon.svg",
     tags: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS"],
+    link: "https://talhadaud.me/",
     year: "2025",
   },
   {
     id: "2",
-    title: "Finance Dashboard",
+    title: "ChronoPulse",
     description:
-      "Interactive financial analytics dashboard with real-time data visualization, custom charts, and predictive insights.",
-    image: "/projects/dashboard.svg",
+      "An interactive data visualization dashboard that presents real-time analytics and insights through dynamic charts and graphs.",
+    image: "/logo.png",
     tags: ["React", "D3.js", "Node.js", "PostgreSQL"],
+    link: "https://chronopulse.social/",
     year: "2025",
   },
   {
     id: "3",
-    title: "Social Media App",
+    title: "GYM Management System",
     description:
-      "A feature-rich social platform with real-time messaging, content sharing, and community engagement tools.",
-    image: "/projects/social.svg",
-    tags: ["React Native", "Firebase", "Redux", "Socket.io"],
+      "A mobile app for managing gym memberships, tracking workouts, and connecting with trainers through real-time chat features.",
+    image: "/projects/dashboard.svg",
+    tags: ["c#", "Oracle SQL", "Visual Studio", "Entity Framework"],
     year: "2024",
   },
-  {
-    id: "4",
-    title: "AI Content Generator",
-    description:
-      "Smart content generation tool powered by machine learning for creating marketing copy and blog posts.",
-    image: "/projects/ai-tool.svg",
-    tags: ["Python", "OpenAI", "FastAPI", "React"],
-    year: "2024",
-  },
+ 
 ];
